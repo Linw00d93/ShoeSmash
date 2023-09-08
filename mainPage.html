@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         .button {
           background-color: #4CAF50;
@@ -16,29 +17,60 @@
         }
     </style>
 <header style="text-align: center;">
-    <p>Header</p>
+   <!-- <p>Header</p> -->
 </header>
 <body>
-    <div class="" style = "margin: 10% 10% 10% 10%; padding: 5px 5px 5px 5px; border: 3px solid #FFFFFF; width:auto; height:250px; border-style: solid; border-radius: 7px; color:#605F5E;">
+    <script>
+        let leftShoe
+        let rightShoe
+        if (leftShoe == null || rightShoe == null) {
+            leftShoe = "Jordan-"+ (Math.floor(Math.random()* 9)+1).toString();
+            rightShoe = "Jordan-"+ (Math.floor(Math.random()* 9)+1).toString();
+        }
+        while (leftShoe == rightShoe){
+            console.log("Match")
+            console.log(leftShoe)
+            console.log(rightShoe)
+            leftShoe = "Jordan-"+ (Math.floor(Math.random()* 9)+1).toString();
+            rightShoe = "Jordan-"+ (Math.floor(Math.random()* 9)+1).toString();
+        }
+        
+    </script>
+    <div class="" style = "margin: 10% 10% 10% 10%; padding: 5px 5px 5px 5px; border: 3px solid #FFFFFF; 
+    width:auto; height:250px; border-style: solid; border-radius: 7px; color:#605F5E;">
 		<div class="row justify-content-center">
-  			<div class="left"  style = "margin: 5px 5px 5px 5px; padding: 5px 5px 5px 5px; border: 3px solid #FFFFFF; width:auto; height:auto; border-style: solid; border-width: 5px; border-radius: 7px; color:#605F5E; text-align: center;">
+  			<div class="left"  style = "margin: 5px 5px 5px 5px; padding: 5px 5px 5px 5px; 
+            border: 3px solid #FFFFFF; width:auto; height:auto; border-style: solid; border-width: 5px; 
+            border-radius: 7px; color:#605F5E; text-align: center;">
 				<h1> Left Shoe</h1>
+                <img id="leftShoeImg" src="" width="300" height="200">
+                <script> document.getElementById("leftShoeImg").src = "shoes/" + leftShoe + ".png";</script>
+                <div id="leftShoe"></div>
+                <script> document.getElementById("leftShoe").innerHTML = leftShoe.replace("-",' ');</script>
                 <button>Left Shoe</button>
 				<form name="calculator">
          			<table>
         		 </table>
       			</form>
 			</div>
-  			<div class="center" style = "margin: 5px 5px 5px 5px; padding:5px 5px 5px 5px; border: 3px solid #FFFFFF; width:auto; height:10%; border-style: solid; border-radius: 7px; color:#605F5E; text-align: center;">
+  			<div class="center" style = "margin: 5px 5px 5px 5px; padding:5px 5px 5px 5px; 
+            border: 3px solid #FFFFFF; width:auto; height:10%; border-style: solid; 
+            border-radius: 7px; color:#605F5E; text-align: center;">
 				<h1>VS</h1>
 			</div>
-  			<div class="right" style = "margin: 5px 5px 5px 5px; padding: 5px 5px 5px 5px; border: 3px solid #FFFFFF; width:auto; height:auto; border-style: solid; border-radius: 7px; color:#605F5E; text-align: center;">
+  			<div class="right" style = "margin: 5px 5px 5px 5px; padding: 5px 5px 5px 5px; 
+            border: 3px solid #FFFFFF; width:auto; height:auto; border-style: solid; 
+            border-radius: 7px; color:#605F5E; text-align: center;">
 				<h1>Right Shoe</h1>
+                <img id="rightShoeImg" src="" width="300" height="200" style="transform: scaleX(-1)">
+                <script> document.getElementById("rightShoeImg").src = "shoes/" + rightShoe + ".png";</script>
+                <div id="rightShoe"></div>
+                <script> document.getElementById("rightShoe").innerHTML = rightShoe.replace("-",' ');</script>
                 <button>Right Shoe</button>
 			</div>
 		</div>
 </body>
 <footer style="position: sticky; text-align: center; margin-top: 50lssvh;">    
-    <p1>Footer</p1>
+   <!-- <p1>Footer</p1> -->
 </footer>
 </html>
