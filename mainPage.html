@@ -16,7 +16,7 @@
           cursor: pointer;
         }
         body {
-         background-color: #0e27e6;
+         background-color: #FEDF00;
         }
         
     </style>
@@ -38,12 +38,12 @@
    
 </script>
 <body>
-    <div class="" style = "margin: 10% 10% 10% 10%; padding: 5px 5px 5px 5px; border: 3px solid #FFFFFF; 
-    width:auto; height:250px; border-style: solid; border-radius: 7px; color:#605F5E;">
+    <div class="" style = "margin: 10% 10% 10% 10%; padding: 5px 5px 5px 5px; 
+    width:auto; height:250px;">
 		<div id="mainBody" class="row justify-content-center">
   			<div class="left"  style = "margin: 5px 5px 5px 5px; padding: 5px 5px 5px 5px; 
-            border: 3px solid #FFFFFF; width:auto; height:auto; border-style: solid; border-width: 5px; 
-            border-radius: 7px; color:#605F5E; text-align: center;">
+            width:auto; height:auto;
+            text-align: center;">
             <script>
                  if (leftShoe == null || rightShoe == null) {
                 leftShoe = "Jordan-"+ (Math.floor(Math.random()* 9)+1).toString();
@@ -66,22 +66,24 @@
                 console.log(shoeNumberArray[leftShoeNumber]);
                 console.log(shoeNumberArray[rightShoeNumber])
             </script>
-				<h1 style="color: #FFFFFF;"> Left Shoe</h1>
-                <img id="leftShoeImg" src="" width="300" height="200">
+				<h1 style="color: #FFFFFF; text-shadow: -5px 5px 5px #605F5E;"> Left Shoe</h1>
+                <img id="leftShoeImg" src="" width="300" height="200" style="box-shadow: -5px 5px 5px #605F5E">
                 <script> document.getElementById("leftShoeImg").src = "shoes/" + leftShoe + ".png";</script>
-                <div id="leftShoe"></div>
+                </br>
+                <div id="leftShoe" style="padding: 5px 5px 5px 5px;"></div>
                 <script> document.getElementById("leftShoe").innerHTML = leftShoe.replace("-",' ');</script>
-                <button onclick="addingVoteL()">Left Shoe</button>
+                <button class="btn btn-light" onclick="addingVoteL()" style=" box-shadow: -5px 5px 5px #605f5e;">Vote For Left Shoe</button>
                 <script>
                 function addingVoteL(){ 
                     increaseVote = "Jordan-" + shoeNumberArray[leftShoeNumber]; 
                     console.log(results[increaseVote])
                     results[increaseVote] = results[increaseVote] + 1; 
                     console.log(results)
-                    document.location.reload(true)
                     json = JSON.stringify(results);
                     localStorage.setItem("results", json)
                     console.log(localStorage.results);
+                    sleep(5);
+                    document.location.reload(true)
                     //console.log("Refreshed");
                 }</script>
 				<form name="calculator">
@@ -89,26 +91,30 @@
         		 </table>
       			</form>
 			</div>
-  			<div class="center" style = "margin: 5px 5px 5px 5px; padding:5px 5px 5px 5px; 
-            border: 3px solid #FFFFFF; width:auto; height:10%; border-style: solid; 
-            border-radius: 7px; color:#605F5E; text-align: center;">
-				<h1 style="color: #FFFFFF;">VS</h1>
+  			<div class="center" style = "margin: 5px 5px 5px 5px; padding: 5px 5px 5px 5px; 
+            width:auto; height:10%; text-align: center;">
+				<h1 style="color: #FFFFFF; text-shadow: -5px 5px 3px #605F5E">VS</h1>
 			</div>
   			<div class="right" style = "margin: 5px 5px 5px 5px; padding: 5px 5px 5px 5px; 
-            border: 3px solid #FFFFFF; width:auto; height:auto; border-style: solid; 
-            border-radius: 7px; color:#605F5E; text-align: center;">
-				<h1 style="color: #FFFFFF;">Right Shoe</h1>
-                <img id="rightShoeImg" src="" width="300" height="200" style="transform: scaleX(-1)">
+            width:auto; height:auto; 
+            text-align: center;">
+				<h1 style="color: #FFFFFF; text-shadow: -5px 5px 3px #605F5E;">Right Shoe</h1>
+                <img id="rightShoeImg" src="" width="300" height="200" style="transform: scaleX(-1); box-shadow: 5px 5px 3px #605F5E;">
                 <script> document.getElementById("rightShoeImg").src = "shoes/" + rightShoe + ".png";</script>
-                <div id="rightShoe"></div>
+                <div id="rightShoe" style="padding: 5px 5px 5px 5px;"></div>
                 <script> document.getElementById("rightShoe").innerHTML = rightShoe.replace("-",' ');</script>
-                <button onclick="addingVoteR()">Right Shoe</button>
+                <button class="btn btn-light"  onclick="addingVoteR()" style=" box-shadow: -5px 5px 5px #605f5e;"> Vote For Right Shoe</button>
                 <script>
                 function addingVoteR(){ 
                     increaseVote = "Jordan-" + shoeNumberArray[rightShoeNumber]; 
                     console.log(results[increaseVote])
                     results[increaseVote] = results[increaseVote] + 1; 
                     console.log(results)
+                    json = JSON.stringify(results);
+                    localStorage.setItem("results", json)
+                    console.log(localStorage.results);
+                    sleep(5);
+                    document.location.reload(true);
                 }</script>
 			</div>
 		</div>
