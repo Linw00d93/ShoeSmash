@@ -1,35 +1,66 @@
-const fs = require('fs')
-const path = require('path')
-const { createServer } = require('http')
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
+const app = express();
+const cors = require('cors');
 
-createServer((req, res) => {
+// Enable CORS for all routes
+app.use(cors());
 
-    // create a dynamic file path
-    let filePath = path.join(__dirname, '', req.url === '/' ? 'mainPage.html' : req.url)
-
-    // default content type
-    let contentType = 'text/html'
-
-    // extract the extension from the filepath
-    let mimeType = path.extname(filePath)
-
-    // load various image types
-    switch (mimeType) {
-        case '.png': contentType = 'shoes/png'; break;
-        case '.jpg': contentType = 'image/jpg'; break;
-        case '.jpeg': contentType = 'image/jpeg'; break;
+// Serve static files from the 'public' directory
+app.use(express.static('public'));
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/mainPage.html');
+  });
+// API route for updating JSON data
+app.get('/api/data/:jordanNumber', (req, res) => {
+  const filePath = 'results.json';
+  const numberOfJordan = req.params.jordanNumber;
+  //console.log(numberOfJordan);
+  let shoeNumberArray =["One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven"];
+  let increaseVote = "Jordan-" + shoeNumberArray[numberOfJordan];
+  console.log(increaseVote)
+  // Read the JSON file
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading file:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
     }
+    try {
+      // Parse the JSON data into a JavaScript object
+      const jsonData = JSON.parse(data);
+        //console.log(jsonData);
+      // Update the object (for example, add or modify a property)
+      //results[increaseVote] = results[increaseVote] + 1; 
+      let results = jsonData
+      results[increaseVote] = results[increaseVote] + 1; 
+      //jsonData.updatedProperty = 'This property was added or updated';
+      // Write the updated object back to the JSON file
+      fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), (writeErr) => {
+        if (writeErr) {
+          console.error('Error writing file:', writeErr);
+          res.status(500).json({ error: 'Internal Server Error' });
+          return;
+        }
+        console.log('JSON file updated successfully.');
+      });
+      
+      // Respond with the updated JSON data
+      data = jsonData
+      console.log(JSON.stringify(jsonData));
+      res.json(JSON.stringify(jsonData));
+      res.status(200);
+      
+      return(data);
+    } catch (parseError) {
+      console.error('Error parsing JSON:', parseError);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+});
 
-    // read the target file and send to the client.
-    fs.readFile(filePath, (error, data) => {
-        // stop the execution and send nothing if the requested file path does not exist.
-        if (error) return
-        
-        // otherwise, fetch and show the target image
-        res.writeHead(200, { 'Content-Type': contentType })
-        res.end(data, 'utf8')
-    
-    })
-    
-})
-.listen(5431)
+// Start serving the static files and handling other routes
+app.listen(5431, () => {
+  console.log('Server is running on port 5431');
+});
