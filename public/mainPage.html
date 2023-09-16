@@ -26,10 +26,11 @@
 <script>
     let leftShoe
     let rightShoe
-    //let json = JSON.stringify(results);
-    //localStorage.setItem("results", json)
-    //console.log(localStorage.results);
-    let shoeNumberArray =["One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven"]
+    let shoeNumberArray =["One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven",
+    "Twelve", "Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen",
+    "Twenty","Twenty-one","Twenty-two","Twenty-three","Twenty-four","Twenty-five","Twenty-six",
+    "Twenty-seven","Twenty-eight","Twenty-nine","Thirty","Thirty-one","Thirty-two","Thirty-three",
+    "Thirty-four","Thirty-five","Thirty-six","Thirty-seven"]
     let leftShoeNumber
     let rightShoeNumber 
     let increaseVote
@@ -44,8 +45,8 @@
             text-align: center;">
             <script>
                  if (leftShoe == null || rightShoe == null) {
-                leftShoe = "Jordan-"+ (Math.floor(Math.random()* 11)+1).toString();
-                rightShoe = "Jordan-"+ (Math.floor(Math.random()* 11)+1).toString();
+                leftShoe = "Jordan-"+ (Math.floor(Math.random()* 37)+1).toString();
+                rightShoe = "Jordan-"+ (Math.floor(Math.random()* 37)+1).toString();
                 leftShoeNumber = leftShoe.replace("Jordan-",'') - 1;
                 rightShoeNumber = rightShoe.replace("Jordan-",'') - 1;
                 }
@@ -53,16 +54,11 @@
                 
                 while (leftShoe == rightShoe){
                     console.log("Match")
-                    //console.log(leftShoe)
-                    //console.log(rightShoe)
-                    leftShoe = "Jordan-"+ (Math.floor(Math.random()* 11)+1).toString();
-                    rightShoe = "Jordan-"+ (Math.floor(Math.random()* 11)+1).toString();
+                    leftShoe = "Jordan-"+ (Math.floor(Math.random()* 37)+1).toString();
+                    rightShoe = "Jordan-"+ (Math.floor(Math.random()* 37)+1).toString();
                     leftShoeNumber = leftShoe.replace("Jordan-",'') - 1;
                     rightShoeNumber = rightShoe.replace("Jordan-",'') - 1;
                 }
-
-                //console.log(shoeNumberArray[leftShoeNumber]);
-                //console.log(shoeNumberArray[rightShoeNumber])
             </script>
 				<h1 style="color: #FFFFFF; text-shadow: -5px 5px 5px #605F5E;"> Left Shoe</h1>
                 <img id="leftShoeImg" src="" width="300" height="200" style="box-shadow: -5px 5px 5px #605F5E">
@@ -74,13 +70,7 @@
                 <script>
                 function addingVoteL(){ 
                     increaseVote = "Jordan-" + shoeNumberArray[leftShoeNumber]; 
-                    //console.log(results[increaseVote])
-                    //results[increaseVote] = results[increaseVote] + 1; 
-                    //console.log(results)
-                    //json = JSON.stringify(results);
-                    //localStorage.setItem("results", json)
-                    //console.log(localStorage.results);
-                    fetch('/api/data/'+(leftShoeNumber)) // Make a GET request to your backend route
+                    fetch('/api/data/'+(leftShoeNumber))
                     .then(response => response.json())
                     .then(data => {
                       console.log(`${data}`);
