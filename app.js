@@ -53,7 +53,7 @@ app.get('/api/data/:jordanNumber', (req, res) => {
       // Respond with the updated JSON data
       data = jsonData
       const date = new Date();
-    const formattedDate = date.toLocaleString();
+      const formattedDate = date.toLocaleString();
       console.log(formattedDate + " "+ JSON.stringify(jsonData));
       res.json(JSON.stringify(jsonData));
       res.status(200);
