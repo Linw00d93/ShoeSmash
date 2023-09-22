@@ -3,6 +3,8 @@ const fs = require("fs");
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const cluster = require('cluster');
+const numCPUs = require('os').cpus().length;
 
 /*Enable CORS for all routes*/
 app.use(cors());
@@ -67,8 +69,20 @@ app.get("/api/data/:jordanNumber", (req, res) => {
     }
   });
 });
+if (cluster.isMaster) {
+    console.log(`Master ${process.pid} is running`);
+    // Fork workers
+    for (let i = 0; i < numCPUs; i++) {
+      cluster.fork();
+    }
+    // Listen for worker exit events
+    cluster.on('exit', (worker, code, signal) => {
+      console.log(`Worker ${worker.process.pid} died`);
+    });
+  } else {
 
 // Start serving the static files and handling other routes
 app.listen(5431, () => {
   console.log("Server is running on port 5431");
-});
+})
+  };
