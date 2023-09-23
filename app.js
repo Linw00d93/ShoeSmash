@@ -14,6 +14,9 @@ app.use(express.static("public"));
 app.get("/", function (req, res){
     res.sendFile(__dirname + "/public/mainPage.html");
   });
+app.get("/results", function(req, res){
+    res.sendFile(__dirname + "/results.json");
+});
 // API route for updating JSON data
 app.get("/api/data/:jordanNumber", (req, res) => {
   const filePath = "results.json";
