@@ -1,4 +1,3 @@
-const path = require('path');
 const fs = require('fs');
 const express = require('express');
 const app = express();
@@ -22,13 +21,13 @@ app.get('/api/data/:jordanNumber', (req, res) => {
   const filePath = 'results.json';
   const numberOfJordan = req.params.jordanNumber;
   // console.log(numberOfJordan);
-  const shoeNumberArray =['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight',
-    'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen',
-    'Seventeen', 'Eighteen', 'Nineteen', 'Twenty', 'Twenty-one', 'Twenty-two',
-    'Twenty-three', 'Twenty-four', 'Twenty-five', 'Twenty-six',
-    'Twenty-seven', 'Twenty-eight', 'Twenty-nine', 'Thirty', 'Thirty-one',
-    'Thirty-two', 'Thirty-three', 'Thirty-four', 'Thirty-five', 'Thirty-six',
-    'Thirty-seven'];
+  const shoeNumberArray =['One', 'Two', 'Three', 'Four', 'Five', 'Six',
+    'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen',
+    'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen',
+    'Twenty', 'Twenty-one', 'Twenty-two', 'Twenty-three', 'Twenty-four',
+    'Twenty-five', 'Twenty-six', 'Twenty-seven', 'Twenty-eight',
+    'Twenty-nine', 'Thirty', 'Thirty-one', 'Thirty-two', 'Thirty-three',
+    'Thirty-four', 'Thirty-five', 'Thirty-six', 'Thirty-seven'];
   const increaseVote = 'Jordan-' + shoeNumberArray[numberOfJordan];
   // console.log(increaseVote)
   // Read the JSON file
