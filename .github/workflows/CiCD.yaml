@@ -20,9 +20,7 @@ jobs:
           node-version: v18.14.1
           
       - name: Install dependencies
-        run: |
-          cd ShoeSmash 
-          npm install
+        run: npm install
         
       - name: where are we
         run: ls -lash
