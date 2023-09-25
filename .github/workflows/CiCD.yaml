@@ -1,0 +1,32 @@
+name: CICD
+on:
+  push:
+   branches:
+    - 'dev'
+
+  workflow_dispatch:
+  
+jobs:
+  build:
+    name: Build
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js 18.14.1
+        uses: actions/setup-node@v1
+        with:
+          node-version: v18.14.1
+          
+      - name: Install dependencies
+        run: |
+          cd ShoeSmash 
+          npm install
+        
+      - name: where are we
+        run: ls -lash
+        
+      - name: eslint testing 
+        run: npx eslint app.js 
+        
