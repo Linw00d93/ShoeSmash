@@ -47,14 +47,15 @@ app.get('/api/data/:jordanNumber', (req, res) => {
       results[increaseVote] = results[increaseVote] + 1;
       // jsonData.updatedProperty = 'This property was added or updated';
       // Write the updated object back to the JSON file
-      fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), (writeErr) => {
-        if (writeErr) {
-          console.error('Error writing file:', writeErr);
-          res.status(500).json({error: 'Internal Server Error'});
-          return;
-        }
-        console.log('JSON file updated successfully.');
-      });
+      fs.writeFile(filePath, JSON.stringify(jsonData, null, 2),
+          (writeErr) => {
+            if (writeErr) {
+              console.error('Error writing file:', writeErr);
+              res.status(500).json({error: 'Internal Server Error'});
+              return;
+            }
+            console.log('JSON file updated successfully.');
+          });
 
       // Respond with the updated JSON data
       data = jsonData;

@@ -31,6 +31,5 @@ module.exports = {
     'node/prefer-global/url-search-params': ['error', 'always'],
     'node/prefer-global/url': ['error', 'always'],
     'node/prefer-promises/dns': 'error',
-    'node/prefer-promises/fs': 'error',
   },
 };
