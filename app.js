@@ -15,7 +15,29 @@ app.get("/", function (req, res){
     res.sendFile(__dirname + "/public/mainPage.html");
   });
 app.get("/results", function(req, res){
-    res.sendFile(__dirname + "/results.json");
+  const filePath = "results.json";
+  fs.readFile(filePath, "utf8", function (err, data){
+    if (err) {
+    console.error("Error reading file:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+    console.log("Error")
+    return;
+    }
+        try {
+        // Parse the JSON data into a JavaScript object
+        const jsonData = JSON.parse(data);
+        res.send(jsonData);
+        console.log(data);
+        return(data);
+        } 
+        catch (parseError) {
+    console.error("Error parsing JSON:", parseError);
+    res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+});
+app.get("/graph", function(req, res){
+  res.sendFile(__dirname + "/public/results.html");
 });
 // API route for updating JSON data
 app.get("/api/data/:jordanNumber", (req, res) => {

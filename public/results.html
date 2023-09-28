@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bar Chart</title>
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- Create a canvas element where the chart will be drawn -->
+    <canvas id="barChart" width="400" height="200"></canvas>
+
+    <script>
+        // Function to fetch JSON data from a file
+        async function fetchData() {
+            try {
+                const response = await fetch('/results');
+                console.log("trying") // Replace 'data.json' with the path to your JSON file
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const jsonData = await response.json();
+                console.log("help");
+                // Get the canvas element
+                const ctx = document.getElementById('barChart').getContext('2d');
+                console.log(jsonData);
+                // Create the bar chart
+                const barChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(jsonData),
+                        datasets: [{
+                            label: 'Data',
+                            data: Object.values(jsonData),
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)', // Bar color
+                            borderColor: 'rgba(75, 192, 192, 1)',     // Border color
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Call the fetchData function to load and create the chart
+        fetchData();
+    </script>
+    <h1>WTF</h1>
+</body>
+</html>
