@@ -44,8 +44,8 @@
     <div class="" style = "margin: 0px 10% 10% 10%; padding: 0px 5px 5px 5px; 
     width:auto; height:95%; border: black; box-shadow: -5px 5px 5px black; 
     border-style: groove; border-width: 5px; border-radius: 15px; background-color: #fc2808;">
-		<div id="mainBody" class="row justify-content-center">
-  			<div class="left"  style = "margin: 5px 5px 5px 5px; padding: 5px 5px 5px 5px; 
+                <div id="mainBody" class="row justify-content-center">
+                        <div class="left"  style = "margin: 5px 5px 5px 5px; padding: 5px 5px 5px 5px; 
             width:auto; height:auto;
             text-align: center;">
             <script>
@@ -65,7 +65,7 @@
                     rightShoeNumber = rightShoe.replace("Jordan-",'') - 1;
                 }
             </script>
-				<h1 style="color: #FFFFFF; text-shadow: -5px 5px 5px black;"> Left Shoe</h1>
+                                <h1 style="color: #FFFFFF; text-shadow: -5px 5px 5px black;"> Left Shoe</h1>
                 <img id="leftShoeImg" src="" width="300" height="200" style="box-shadow: -5px 5px 5px black; border-radius: 15px">
                 <script> document.getElementById("leftShoeImg").src = "shoes/" + leftShoe + ".png";</script>
                 <div id="leftShoe" style="padding: 5px 5px 5px 5px; color: white;"></div>
@@ -74,6 +74,7 @@
                 Vote For Left Shoe</button>
                 <script>
                     function addingVoteL(){ 
+                        leftShoeNumber = leftShoeNumber + 1
                         fetch('/api/data/'+(leftShoeNumber))
                         .then(response => response.json())
                         .then(data => {
@@ -84,15 +85,15 @@
                         });
                         document.location.reload(true)};
                 </script>
-			</div>
-  			<div class="center" style = "margin: 5px 5px 5px 5px; padding: 5px 5px 5px 5px; 
+                        </div>
+                        <div class="center" style = "margin: 5px 5px 5px 5px; padding: 5px 5px 5px 5px; 
                 width:auto; height:10%; text-align: center;">
-				<h1 style="color: #FFFFFF; text-shadow: -5px 5px 3px black">VS</h1>
-			</div>
-  			<div class="right" style = "margin: 5px 5px 5px 5px; padding: 5px 5px 5px 5px; 
+                                <h1 style="color: #FFFFFF; text-shadow: -5px 5px 3px black">VS</h1>
+                        </div>
+                        <div class="right" style = "margin: 5px 5px 5px 5px; padding: 5px 5px 5px 5px; 
                 width:auto; height:auto; 
                 text-align: center;">
-				<h1 style="color: #FFFFFF; text-shadow: -5px 5px 3px black;">Right Shoe</h1>
+                                <h1 style="color: #FFFFFF; text-shadow: -5px 5px 3px black;">Right Shoe</h1>
                 <img id="rightShoeImg" src="" width="300" height="200" style="transform: scaleX(-1); box-shadow: 
                     5px 5px 3px black; border-radius: 15px;">
                 <script> document.getElementById("rightShoeImg").src = "shoes/" + rightShoe + ".png";</script>
@@ -102,6 +103,7 @@
                     Vote For Right Shoe</button>
                 <script>
                 function addingVoteR(){ 
+                    rightShoeNumber = rightShoeNumber + 1 
                     fetch('/api/data/'+(rightShoeNumber))
                     .then(response => response.json())
                     .then(data => {
@@ -112,8 +114,8 @@
                      });
                    document.location.reload(true)}
                 </script>
-			</div>
-		</div>
+                        </div>
+                </div>
         <h3 style="text-align: center; color: #FFFFFF; text-shadow: -5px 5px 3px black;">Which shoe looks better?</h3> 
     </div>
 </body>

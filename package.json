@@ -13,5 +13,9 @@
     "express": "^4.18.2",
     "jslint": "^0.12.1",
     "nodemon": "^3.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "eslint-config-google": "^0.14.0"
   }
 }
